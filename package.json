@@ -9,7 +9,8 @@
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
-    }
+    },
+    "testMatch": ["**/tests/**/*.ts"]
   },
   "type": "module",
   "keywords": [
