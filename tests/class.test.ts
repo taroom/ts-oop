@@ -64,4 +64,36 @@ describe('should support class init', function () {
         console.info(`Hallo saya ${aris.nama} alamat saya di ${aris.alamat}`);
         console.info(`Hallo saya ${aris.nama} alamat saya di ${aris.alamat}`);
     });
+
+    it('class method', function () {
+        class Manusia {
+            readonly id: number;
+            nama: string = "adam";//ini menjadi default value
+            alamat?: string;
+
+            constructor(id: number) {
+                this.id = id;
+                console.info(`Hallo aku manusia namaku ${this.nama}`);
+            }
+
+            sayHello(): string {
+                return `hallo namaku ${this.nama}`;
+            }
+
+            feedMe(food: string): string {
+                return `Hey, you give me ${food} thanks a lot`;
+            }
+
+            serveYou(buy: string, buck: number): string {
+                return `Hey you give me money ${buck} and you want me to buy ${buy}`;
+            }
+        }
+
+        const aris: Manusia = new Manusia(1);
+        aris.nama = 'Aris Heriyanto';
+        aris.alamat = 'Surabaya';
+        expect(aris.sayHello()).toBe(`hallo namaku Aris Heriyanto`);
+        expect(aris.feedMe('Rawon')).toBe(`Hey, you give me Rawon thanks a lot`);
+        expect(aris.serveYou('Permen', 10000)).toBe(`Hey you give me money 10000 and you want me to buy Permen`);
+    });
 });
