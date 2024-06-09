@@ -1,2 +1,3 @@
-# ts-starterpack
-Belajar TypeScript 
+# ts-oop
+
+Belajar TypeScript untuk paradigma OOP
