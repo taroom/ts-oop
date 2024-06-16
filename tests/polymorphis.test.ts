@@ -19,6 +19,18 @@ describe('should do polymorphis', function () {
         console.info(`Haloo, ${wapres.name}`);
     }
 
+    function katakanHaloDenganTypeCast(pekerja: Pekerja): void {
+        if (pekerja instanceof WakilPresiden) { // pencocokan dimulai dari yang turunan paling bawah, karena misalkan kita check dulu menejer dan yang diisikan adalah wakilpresiden yang mana turunan dari menejer maka akan bernilai true, karena instanceof akan mengembalikan bool true ketika dia ada objek dari atau turunan dari objek dari
+            const wp = pekerja as WakilPresiden;
+            console.info(`Hallo Wakil Presiden, ${wp.name}`);
+        } else if (pekerja instanceof Menejer) {
+            const m = pekerja as Menejer;
+            console.info(`Hallo Menejer, ${m.name}`);
+        } else {
+            console.info(`Hallo, ${pekerja.name}`);
+        }
+    }
+
     it('doing polymorph', function () {
         let pekerja: Pekerja = new Pekerja("Waluyo");
         console.info(pekerja);
@@ -54,5 +66,11 @@ describe('should do polymorphis', function () {
         katakanHalo(new Pekerja("Jeki"));
         katakanHalo(new Menejer("Jeki"));
         katakanHalo(new WakilPresiden("Jeki"));
+    });
+
+    it('do method polymorph with type cast', () => {
+        katakanHaloDenganTypeCast(new Pekerja("Jeki"));
+        katakanHaloDenganTypeCast(new Menejer("Jeki"));
+        katakanHaloDenganTypeCast(new WakilPresiden("Jeki"));
     });
 });
