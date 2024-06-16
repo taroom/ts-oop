@@ -31,6 +31,18 @@ describe('should do polymorphis', function () {
         }
     }
 
+    function katakanHaloDenganTypeCastSalah(pekerja: Pekerja): void {
+        if (pekerja instanceof Menejer) { // ketika Menejer diberada diatas
+            const wp = pekerja as Menejer;
+            console.info(`Hallo Menejer, ${wp.name}`);
+        } else if (pekerja instanceof WakilPresiden) {
+            const m = pekerja as WakilPresiden;
+            console.info(`Hallo Wakil Presiden, ${m.name}`);
+        } else {
+            console.info(`Hallo, ${pekerja.name}`);
+        }
+    }
+
     it('doing polymorph', function () {
         let pekerja: Pekerja = new Pekerja("Waluyo");
         console.info(pekerja);
@@ -72,5 +84,11 @@ describe('should do polymorphis', function () {
         katakanHaloDenganTypeCast(new Pekerja("Jeki"));
         katakanHaloDenganTypeCast(new Menejer("Jeki"));
         katakanHaloDenganTypeCast(new WakilPresiden("Jeki"));
+    });
+
+    it('do method polymorph with wrong code type cast', () => {
+        katakanHaloDenganTypeCastSalah(new Pekerja("Jeki"));
+        katakanHaloDenganTypeCastSalah(new Menejer("Jeki"));//akan mengembalikan menejer
+        katakanHaloDenganTypeCastSalah(new WakilPresiden("Jeki"));//akan mengembalikan menejer
     });
 });
